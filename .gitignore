@@ -1,2 +1,5 @@
 /.idea
 /1231.txt
+**/.vscode/*
+**/__pychache__/*
+**/.ipynb_checkpoints/*
