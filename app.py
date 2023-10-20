@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import joblib
 
 
-app = Flask(__name__)
+app = Flask(__name__,  static_folder='static')
 
 model_loaded = joblib.load('ml_models/models/ebw.pkl')
 scaler_loaded = joblib.load('ml_models/scalers/MinMaxScaler.pkl')
@@ -18,7 +18,6 @@ def predict():
         fp = float(request.form.get("fp"))
 
         test_sample = scaler_loaded.transform([[iw, i_f, vw, fp]])
-        print(test_sample)
 
         prediction = model_loaded.predict(test_sample)
 

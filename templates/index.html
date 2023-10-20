@@ -1,45 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+  <meta charset="UTF-8">
+  <title>Прогнозирование параметров сварочного шва</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+
 </head>
 <body>
-    <h1> Предсказания параметров сварочного шва </h1>
-    {% if data %}
-        <p>Глубина шва: {{ data.weld_depth }}</p>
-        <p>Ширина шва: {{ data.weld_width }}</p>
-        <p>Веденные параметры:
-            <ul>
-                <li>Величина сварочного тока: {{ data.iw }}</li>
-                <li>Величина тока фокусировки электронного пучка: {{ data.if }}</li>
-                <li>Скорость сварки: {{ data.vw }}</li>
-                <li>Расстояние от поверхности образцов до электронно-оптической системы	: {{ data.fp }}</li>
-            </ul>
-        </p>
-    {% endif %}
 
-    <form action="" method="post">
-        <p>
-            <label for="iw">IW</label>
-            <input type="text" name="iw">
-        </p>
-        <p>
-            <label for="if">IF</label>
-            <input type="text" name="if">
-        </p>
-        <p>
-            <label for="vw">VW</label>
-            <input type="text" name="vw">
-        </p>
-        <p>
-            <label for="fp">FP</label>
-            <input type="text" name="fp">
-        </p>
-        <p>
-            <input type="submit">
-        </p>
-    </form>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <div class="bg"></div>
+    <main class="form-signin">
+    
+        <h1 class="h3">Прогнозирование параметров сварочного шва</h1>
+
+        {% if data %}
+            <p>Глубина шва: {{ data.weld_depth }}</p>
+            <p>Ширина шва: {{ data.weld_width }}</p>
+            <p>Веденные параметры:
+                <ul>
+                    <li>Величина сварочного тока: {{ data.iw }}</li>
+                    <li>Величина тока фокусировки электронного пучка: {{ data.if }}</li>
+                    <li>Скорость сварки: {{ data.vw }}</li>
+                    <li>Расстояние от поверхности образцов до электронно-оптической системы	: {{ data.fp }}</li>
+                </ul>
+            </p>
+        {% endif %}
+
+        <form action="" method="post">
+
+            <div class="form-floating">
+                <input type="number" name="iw" class="form-control" id="IW" placeholder="cварочный ток" required>
+                <label for="IW">Сварочный ток (IW)</label>
+            </div>
+            <div class="form-floating">
+                <input type="number" name="if" class="form-control" id="IF" placeholder="ток фокусировки" required>
+                <label for="IF">Ток фокусировки (IF)</label>
+            </div>
+            <div class="form-floating">
+                <input type="number" name="vw" step="0.01" class="form-control" id="VW" placeholder="скорость сварки" required>
+                <label for="VW">Скорость сварки (VW)</label>
+            </div>
+            <div class="form-floating">
+                <input type="number" name="fp" class="form-control" id="FP" placeholder="расстояние" required>
+                <label for="FP">Расстояние (FP)</label>
+            </div>
+
+            <button class="w-100 btn btn-lg" type="submit">Рассчитать</button>
+        </form>
+
+  </main>
 </body>
 </html>
