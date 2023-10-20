@@ -3,9 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-<h1> wwidjiw</h1>
+    <h1> Предсказания параметров сварочного шва </h1>
+    {% if data %}
+        <p>Глубина шва: {{ data.weld_depth }}</p>
+        <p>Ширина шва: {{ data.weld_width }}</p>
+        <p>Веденные параметры:
+            <ul>
+                <li>Величина сварочного тока: {{ data.iw }}</li>
+                <li>Величина тока фокусировки электронного пучка: {{ data.if }}</li>
+                <li>Скорость сварки: {{ data.vw }}</li>
+                <li>Расстояние от поверхности образцов до электронно-оптической системы	: {{ data.fp }}</li>
+            </ul>
+        </p>
+    {% endif %}
 
+    <form action="" method="post">
+        <p>
+            <label for="iw">IW</label>
+            <input type="text" name="iw">
+        </p>
+        <p>
+            <label for="if">IF</label>
+            <input type="text" name="if">
+        </p>
+        <p>
+            <label for="vw">VW</label>
+            <input type="text" name="vw">
+        </p>
+        <p>
+            <label for="fp">FP</label>
+            <input type="text" name="fp">
+        </p>
+        <p>
+            <input type="submit">
+        </p>
+    </form>
 </body>
 </html>
